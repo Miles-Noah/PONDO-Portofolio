@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Game Nexus - Connexion</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Game Nexus</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="jeux.html">Jeux Recommandés</a></li>
+        <li><a href="tests.html">Tests</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="about.html">À Propos</a></li>
+        <li><a href="connexion.html" class="active">Connexion</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="connexion">
+      <h2>Connexion à Game Nexus</h2>
+      <form id="loginForm" action="#" method="post">
+        <div class="form-group">
+          <label for="username">Nom d'utilisateur :</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            required
+            pattern="^[a-zA-Z0-9_]{3,20}$"
+            title="3 à 20 caractères alphanumériques (lettres, chiffres, underscores uniquement)"
+            placeholder="Ex: Noah45"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Mot de passe :</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            minlength="8"
+            pattern="^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[^a-zA-Z0-9]).{8,}$"
+            title="Au moins 8 caractères, avec une majuscule, une minuscule, un chiffre et un caractère spécial"
+            placeholder="Ex: M0tDeP@ss!"
+          />
+        </div>
+
+        <button type="submit">Se connecter</button>
+      </form>
+      <p class="info">Votre nom d'utilisateur ne doit pas contenir d'espaces, d'accents ou de symboles spéciaux. Le mot de passe doit être complexe.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Game Nexus</p>
+  </footer>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      if (username === password) {
+        e.preventDefault();
+        alert("Le nom d'utilisateur ne peut pas être identique au mot de passe.");
+      }
+
+      const bannedWords = ["admin", "root", "null", "test", "fuck", "password", "azerty", "123456"];
+      const lowerUser = username.toLowerCase();
+      const lowerPass = password.toLowerCase();
+
+      if (bannedWords.includes(lowerUser) || bannedWords.includes(lowerPass)) {
+        e.preventDefault();
+        alert("Nom d'utilisateur ou mot de passe interdit.");
+      }
+    });
+  </script>
+</body>
+</html>
